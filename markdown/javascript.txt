@@ -1,0 +1,25 @@
+# JavaScript
+
+JavaScript es un lenguaje de programación de alto nivel, interpretado y orientado a objetos. Es ampliamente utilizado en el desarrollo web para agregar interactividad y dinamismo a los sitios web.
+
+## Características de JavaScript
+
+- **Interpretado**: JavaScript se ejecuta en tiempo de ejecución, lo que significa que no requiere un proceso de compilación previo. Los navegadores web interpretan directamente el código JavaScript.
+
+- **Orientado a objetos**: JavaScript es un lenguaje orientado a objetos, lo que significa que se basa en el concepto de objetos y clases. Permite crear y manipular objetos con sus propiedades y métodos.
+
+- **Lenguaje de scripting**: JavaScript se utiliza principalmente como un lenguaje de scripting en el lado del cliente. Puede interactuar con el HTML y CSS de una página web para realizar cambios dinámicos y responder a eventos del usuario.
+
+- **Versatilidad**: JavaScript se puede utilizar tanto en el desarrollo web (frontend y backend) como en otros entornos, como aplicaciones de escritorio o desarrollo de juegos.
+
+## Ejemplo básico
+
+Aquí hay un ejemplo básico de código JavaScript que muestra un saludo en la consola del navegador:
+
+```javascript
+// Definir una función
+function saludar(nombre) {
+  console.log("¡Hola, " + nombre + "!");
+}
+// Llamar a la función
+saludar("Juan");
