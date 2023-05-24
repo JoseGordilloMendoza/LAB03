@@ -7,6 +7,64 @@
     <title>Archivos Mardown</title>
 </head>
 <body>
-    
-</body>
+    <h1>Archivos Markdown</h1>
+    <ul id="file-list"></ul>
+  
+    <h2>Crear nuevo archivo Markdown</h2>
+    <form id="create-form">
+      <label for="filename">Nombre del archivo:</label>
+      <input type="text" id="filename" name="filename" required>
+      <br>
+      <label for="content">Contenido:</label>
+      <textarea id="content" name="content" rows="5" required></textarea>
+      <br>
+      <input type="submit" value="Crear">
+    </form>
+  
+    <h2>Contenido HTML del archivo Markdown</h2>
+  
+    <div id="markdown-content"></div>
+  
+    <script>
+      // Función para mostrar la lista de archivos Markdown
+      function showFileList(files) {
+        const fileList = document.getElementById('file-list');
+        fileList.innerHTML = '';
+  
+        files.forEach((file) => {
+          const listItem = document.createElement('li');
+          listItem.textContent = file;
+          fileList.appendChild(listItem);
+        });
+      }
+  
+      // Función para mostrar el contenido HTML de un archivo Markdown
+      function showMarkdownContent(htmlContent) {
+        const markdownContent = document.getElementById('markdown-content');
+        markdownContent.innerHTML = htmlContent;
+      }
+  
+      // Función para enviar una solicitud GET al servidor
+      function sendGetRequest(url, callback) {
+        fetch(url)
+          .then((response) => response.json())
+          .then((data) => callback(data))
+          .catch((error) => console.error(error));
+      }
+  
+      // Función para enviar una solicitud POST al servidor
+      function sendPostRequest(url, data, callback) {
+        fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        })
+          .then((response) => response.json())
+          .then((data) => callback(data))
+          .catch((error) => console.error(error));
+      }
+    </script>
+  </body>
 </html>
