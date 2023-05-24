@@ -43,3 +43,17 @@ fs.readFile(filePath, 'utf8', (err, data) => {
   }
 });
 });
+
+// Ruta para crear un nuevo archivo Markdown
+app.post('/files', (req, res) => {
+  const { filename, content } = req.body;
+  const filePath = __dirname + '/markdown/' + filename;
+
+  fs.writeFile(filePath, content, (err) => {
+    if (err) {
+      res.status(500).json({ error: 'Error al crear el archivo Markdown' });
+    } else {
+      res.json({ message: 'Archivo Markdown creado exitosamente' });
+    }
+  });
+});
