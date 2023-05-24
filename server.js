@@ -28,3 +28,18 @@ app.get('/files', (req, res) => {
     }
   });
 });
+// Ruta para obtener el contenido HTML de un archivo Markdown
+app.get('/gethtml', (req, res) => {
+  console.log("se activa la peticion");
+const filename = req.query.nombre;
+const filePath = __dirname + '/markdown/' + filename;
+
+fs.readFile(filePath, 'utf8', (err, data) => {
+  if (err) {
+    res.status(500).json({ error: 'Error al leer el archivo Markdown' });
+  } else {
+    const htmlContent = md.render(data);
+    res.json({ htmlContent: htmlContent });
+  }
+});
+});
