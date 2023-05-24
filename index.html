@@ -54,12 +54,14 @@
   
       // Función para enviar una solicitud POST al servidor
       function sendPostRequest(url, data, callback) {
+        let contenidoBody = JSON.stringify(data);
+        console.log(contenidoBody);
         fetch(url, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(data),
+          body: contenidoBody,
         })
           .then((response) => response.json())
           .then((data) => callback(data))
@@ -82,8 +84,10 @@
         const content = contentInput.value.trim();
   
         if (filename && content) {
-          const data = { filename, content };
-          sendPostRequest('/files', data, function (response) {
+          const data = { filename: filename, content: content };
+          console.log(typeof data);
+          console.log(data);
+          sendPostRequest('/createfiles', data, function (response) {
             alert(response.message);
             filenameInput.value = '';
             contentInput.value = '';

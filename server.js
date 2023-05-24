@@ -1,12 +1,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs');
+const { type } = require('os');
 const MarkdownIt = require('markdown-it'),
-    md = new MarkdownIt();
-
+    md = new MarkdownIt();    
 const app = express();
 const PORT = 3000;
 
+app.use(bodyParser.json());
+    
+    
 // Iniciar el servidor
 app.listen(PORT, () => {
   console.log(`Servidor escuchando en http://localhost:${PORT}`);
@@ -45,11 +48,10 @@ fs.readFile(filePath, 'utf8', (err, data) => {
 });
 
 // Ruta para crear un nuevo archivo Markdown
-app.post('/files', (req, res) => {
-  const { filename, content } = req.body;
-  const filePath = __dirname + '/markdown/' + filename;
-
-  fs.writeFile(filePath, content, (err) => {
+app.post('/createfiles', (req, res) => {
+  const data = req.body;
+  const filePath = __dirname + '/markdown/' + data.filename;
+  fs.writeFile(filePath, data.content, (err) => {
     if (err) {
       res.status(500).json({ error: 'Error al crear el archivo Markdown' });
     } else {
